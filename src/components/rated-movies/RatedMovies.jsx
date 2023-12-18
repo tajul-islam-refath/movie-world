@@ -24,7 +24,7 @@ const RatedMovies = () => {
                 alt=""
                 className="w-full h-full block object-cover absolute z-1"
               />
-              <div className="w-full absolute bottom-0 text-whit py-2 font-semibold backdrop-blur-sm">
+              <div className="w-full absolute bottom-0 text-white py-2 font-semibold backdrop-blur-sm">
                 <h3 className="text-white">JAWAN</h3>
               </div>
             </div>

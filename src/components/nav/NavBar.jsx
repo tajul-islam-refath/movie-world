@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -13,6 +13,11 @@ const NavBar = () => {
           <p>Get Pro</p>
           <p>Movies</p>
           <p>Watch List</p>
+          <Link
+            to="/login"
+            className="py-1 rounded-full px-8 bg-blue-600 text-center">
+            Login
+          </Link>
         </div>
       </div>
     </nav>
