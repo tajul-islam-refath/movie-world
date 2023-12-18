@@ -2,8 +2,8 @@ import React from "react";
 
 const NavBar = () => {
   return (
-    <nav className="fixed top-0 w-full px-12 py-6 bg-transparent">
-      <div className="flex justify-between items-center">
+    <nav className="fixed top-0 w-full  py-6 bg-transparent text-white">
+      <div className="container mx-auto flex justify-between items-center">
         <div className="relative">
           <span className="text-blue-500 font-bold uppercase">Movie </span>
           <br />
