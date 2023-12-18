@@ -1,11 +1,11 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "../nav/NavBar";
+import Footer from "../footer/Footer";
 
 const MainLayout = () => {
   return (
     <>
-      {/* global loading */}
       {/* Nav menu  */}
       <NavBar />
       {/* main */}
@@ -13,6 +13,7 @@ const MainLayout = () => {
         <Outlet />
       </main>
       {/* Footer  */}
+      <Footer />
     </>
   );
 };
