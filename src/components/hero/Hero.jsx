@@ -25,8 +25,8 @@ const Hero = () => {
           <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
             <SwiperSlide>
               <div className="rounded-lg h-full w-full relative">
-                <img src={heroImage} alt="" className="absolute z-1" />
-                <button className="absolute bottom-1 left-12 z-10 bg-blue-600 text-[12px] uppercase text-white  rounded-full py-1 px-6">
+                <img src={heroImage} alt="" className="absolute" />
+                <button className="absolute bottom-1 left-1/2 -translate-x-1/2 z-50 bg-blue-600 text-[12px] uppercase text-white  rounded-full py-1 px-6">
                   Watch Now
                 </button>
               </div>
