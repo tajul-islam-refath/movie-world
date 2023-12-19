@@ -4,6 +4,8 @@ export const userSlice = createSlice({
   name: "User",
   initialState: {
     user: null,
+    movies: [],
+    movie: null,
     listFavorites: [],
   },
   reducers: {
@@ -16,6 +18,9 @@ export const userSlice = createSlice({
       }
 
       state.user = action.payload;
+    },
+    setListMovies: (state, action) => {
+      state.movies = action.payload;
     },
     setListFavorites: (state, action) => {
       state.listFavorites = action.payload;
@@ -32,7 +37,12 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUser, setListFavorites, addFavorite, removeFavorite } =
-  userSlice.actions;
+export const {
+  setUser,
+  setListFavorites,
+  addFavorite,
+  removeFavorite,
+  setListMovies,
+} = userSlice.actions;
 
 export default userSlice.reducer;

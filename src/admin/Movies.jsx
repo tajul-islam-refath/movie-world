@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setListMovies } from "../redux/features/userSlice";
+import movieApi from "../api/modules/movies.api";
 
 const Movies = () => {
+  const dispatch = useDispatch();
+  const movies = useSelector((state) => state.user.movies);
+
+  useEffect(() => {
+    const getMovies = async () => {
+      const { response, err } = await movieApi.getAll();
+
+      if (response) dispatch(setListMovies(response.data));
+      if (err) console.log(err);
+    };
+
+    getMovies();
+  }, [dispatch]);
+
+  console.log(movies);
+
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-3">
@@ -15,19 +34,31 @@ const Movies = () => {
       <table class="w-full border border-slate-400 border-spacing-2 text-left">
         <thead>
           <tr>
-            <th class="border border-slate-300 ">Song</th>
-            <th class="border border-slate-300 ">Artist</th>
-            <th class="border border-slate-300 ">Year</th>
+            <th class="border border-slate-300 p-2">Title</th>
+            <th class="border border-slate-300 p-2">Strs</th>
+            <th class="border border-slate-300 p-2">Image</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="border border-slate-300 ">
-              The Sliding Mr. Bones (Next Stop, Pottersville)
-            </td>
-            <td class="border border-slate-300 ">Malcolm Lockyer</td>
-            <td class="border border-slate-300 ">1961</td>
-          </tr>
+          {movies?.map((movie) => (
+            <tr>
+              <td class="border border-slate-300 p-2">{movie.title}</td>
+              <td class="border border-slate-300 p-2">
+                {movie?.strs?.split(",").map((res) => (
+                  <span className="bg-green-400 ml-1 py-1 px-2 rounded-2xl">
+                    {res}
+                  </span>
+                ))}
+              </td>
+              <td class="border border-slate-300 p-2">
+                <img
+                  src={movie?.image}
+                  alt=""
+                  className="w-[80px] h-[100px] object-cover"
+                />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

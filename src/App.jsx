@@ -2,8 +2,9 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/route";
 import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "./redux/features/userSlice";
+import { setUser, setListMovies } from "./redux/features/userSlice";
 import userApi from "./api/modules/user.api";
+import movieApi from "./api/modules/movies.api";
 
 import "react-toastify/dist/ReactToastify.css";
 import "swiper/css";
@@ -24,6 +25,17 @@ function App() {
     };
 
     authUser();
+  }, [dispatch]);
+
+  useEffect(() => {
+    const getMovies = async () => {
+      const { response, err } = await movieApi.getAll();
+
+      if (response) dispatch(setListMovies(response.data));
+      if (err) console.log(err);
+    };
+
+    getMovies();
   }, [dispatch]);
 
   return (
