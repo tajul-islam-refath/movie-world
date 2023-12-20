@@ -12,3 +12,8 @@ export const avgRating = (ratings) => {
   const averageRating = totalRating / ratings?.length || 0;
   return averageRating;
 };
+
+export const hasWatchList = (watchList, movieId) => {
+  let isFound = watchList.find((res) => (res._id == movieId ? true : false));
+  return isFound ? true : false;
+};

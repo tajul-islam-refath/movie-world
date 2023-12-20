@@ -7,9 +7,31 @@ import { MdOutlineSlowMotionVideo } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoAdd } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
+import movieApi from "../../api/modules/movies.api";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addWatchList } from "../../redux/features/userSlice";
+import MovieCard from "../card/MovieCard";
 
 const RatedMovies = () => {
+  const dispatch = useDispatch();
   const movies = useSelector((state) => state.user.movies);
+
+  const addToWatchList = async (movie) => {
+    const { response, err } = await movieApi.addToWatchList({
+      movieId: movie._id,
+    });
+
+    if (response) {
+      toast.success("Added to watchlist!");
+      dispatch(addWatchList(movie));
+    }
+    if (err) {
+      console.log(err);
+      toast.error("Failed to add watchlist!");
+    }
+  };
+
   return (
     <section className="w-full min-h-[100%] bg-black py-10 px-2 relative">
       <div className="absolute left-0 top-0 bg-blue-400 w-[20%] h-full blur-[20rem]"></div>
@@ -49,32 +71,8 @@ const RatedMovies = () => {
           }}
           className="upcomming-swipper">
           {movies?.map((movie) => (
-            <SwiperSlide>
-              <div className="w-full h-full overflow-hidden rounded-lg bg-gray-900">
-                <img
-                  src={movie?.image}
-                  alt=""
-                  className="w-full h-[160px] object-cover"
-                />
-                <div className="w-full font-semibold p-3">
-                  <h3 className="text-white text-left uppercase">
-                    {movie?.title}
-                  </h3>
-                  <span className="flex items-center gap-2 cursor-pointer text-white ">
-                    <FaStar className="inline-block text-yellow-400 " />{" "}
-                    {avgRating(movie?.ratings)}({movie?.ratings?.length})
-                  </span>
-                  <button className=" flex flex-row items-center gap-3 w-full bg-blue-600 text-[12px] uppercase text-white  rounded-full py-1 px-6 mt-2">
-                    <IoAdd /> Watch List
-                  </button>
-                  <Link
-                    to={`/movies/${movie?._id}`}
-                    className="flex items-center gap-2 cursor-pointer text-[12px] mt-2 text-white ">
-                    <MdOutlineSlowMotionVideo className="inline-block text-yellow-400 " />{" "}
-                    Trailer
-                  </Link>
-                </div>
-              </div>
+            <SwiperSlide key={movie._id}>
+              <MovieCard movie={movie} />
             </SwiperSlide>
           ))}
         </Swiper>

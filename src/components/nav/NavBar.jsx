@@ -8,7 +8,7 @@ const NavBar = () => {
   const user = useSelector((state) => state.user.user);
   const logOut = () => {
     dispatch(setUser(null));
-    navigate("/");
+    window.location.href = "/";
     toast.success("Logout successfully!");
   };
 

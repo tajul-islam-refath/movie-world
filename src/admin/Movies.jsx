@@ -19,8 +19,6 @@ const Movies = () => {
     getMovies();
   }, [dispatch]);
 
-  console.log(movies);
-
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-3">

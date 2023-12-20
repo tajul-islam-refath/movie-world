@@ -38,7 +38,7 @@ const Login = () => {
         signinForm.resetForm();
         dispatch(setUser(response));
         toast.success("Sign in success");
-        navigate("/");
+        window.location.href = "/";
       }
 
       if (err) {

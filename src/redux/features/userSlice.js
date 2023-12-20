@@ -6,7 +6,7 @@ export const userSlice = createSlice({
     user: null,
     movies: [],
     movie: null,
-    listFavorites: [],
+    watchList: [],
   },
   reducers: {
     setUser: (state, action) => {
@@ -25,26 +25,26 @@ export const userSlice = createSlice({
     setMovie: (state, action) => {
       state.movie = action.payload;
     },
-    setListFavorites: (state, action) => {
-      state.listFavorites = action.payload;
+    setWatchLists: (state, action) => {
+      state.watchList = action.payload;
     },
-    removeFavorite: (state, action) => {
-      const { mediaId } = action.payload;
-      state.listFavorites = [...state.listFavorites].filter(
-        (e) => e.mediaId.toString() !== mediaId.toString()
+    removeWatchList: (state, action) => {
+      const { movieId } = action.payload;
+      state.watchList = [...state.watchList].filter(
+        (e) => e._id.toString() !== movieId.toString()
       );
     },
-    addFavorite: (state, action) => {
-      state.listFavorites = [action.payload, ...state.listFavorites];
+    addWatchList: (state, action) => {
+      state.watchList = [action.payload, ...state.watchList];
     },
   },
 });
 
 export const {
   setUser,
-  setListFavorites,
-  addFavorite,
-  removeFavorite,
+  setWatchLists,
+  addWatchList,
+  removeWatchList,
   setListMovies,
   setMovie,
 } = userSlice.actions;
