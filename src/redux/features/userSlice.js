@@ -22,6 +22,9 @@ export const userSlice = createSlice({
     setListMovies: (state, action) => {
       state.movies = action.payload;
     },
+    setMovie: (state, action) => {
+      state.movie = action.payload;
+    },
     setListFavorites: (state, action) => {
       state.listFavorites = action.payload;
     },
@@ -43,6 +46,7 @@ export const {
   addFavorite,
   removeFavorite,
   setListMovies,
+  setMovie,
 } = userSlice.actions;
 
 export default userSlice.reducer;

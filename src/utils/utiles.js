@@ -6,3 +6,9 @@ export const getBase64 = (file) => {
     reader.onerror = (error) => reject(error);
   });
 };
+
+export const avgRating = (ratings) => {
+  let totalRating = ratings?.reduce((sum, res) => sum + res.rating, 0);
+  const averageRating = totalRating / ratings?.length || 0;
+  return averageRating;
+};

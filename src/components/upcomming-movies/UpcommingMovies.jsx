@@ -1,8 +1,10 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./upcomming.css";
+import { useSelector } from "react-redux";
 import img from "../../assets/hero.jpg";
 
 const UpcommingMovies = () => {
+  const movies = useSelector((state) => state.user.movies);
   return (
     <section className="w-full min-h-[100%] bg-black py-10 px-2 relative">
       <div className="absolute left-0 top-0 bg-blue-400 w-[30%] h-full blur-[20rem]"></div>
@@ -19,49 +21,44 @@ const UpcommingMovies = () => {
         <Swiper
           slidesPerView={5}
           spaceBetween={30}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            400: {
+              slidesPerView: 2,
+            },
+            639: {
+              slidesPerView: 3,
+            },
+            865: {
+              slidesPerView: 4,
+            },
+            1000: {
+              slidesPerView: 5,
+            },
+            1500: {
+              slidesPerView: 6,
+            },
+            1700: {
+              slidesPerView: 7,
+            },
+          }}
           className="upcomming-swipper">
-          <SwiperSlide>
-            <div className="w-full h-full relative overflow-hidden">
-              <img
-                src={img}
-                alt=""
-                className="w-full h-full block object-cover absolute z-1"
-              />
-              <div className="w-full absolute bottom-0 text-whit py-2 font-semibold backdrop-blur-sm">
-                <h3 className="text-white">JAWAN</h3>
+          {movies?.map((movie) => (
+            <SwiperSlide>
+              <div className="w-full h-full relative overflow-hidden rounded-lg">
+                <img
+                  src={movie?.image}
+                  alt=""
+                  className="w-full h-full block  object-cover absolute z-1"
+                />
+                <div className="w-full absolute bottom-0 text-whit py-2 font-semibold backdrop-blur-sm">
+                  <h3 className="text-white">{movie?.title}</h3>
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-full h-full relative overflow-hidden">
-              <img
-                src={img}
-                alt=""
-                className="w-full h-full block object-cover absolute z-1"
-              />
-              <div className="w-full absolute bottom-0 text-whit py-2 font-semibold backdrop-blur-sm">
-                <h3 className="text-white">JAWAN</h3>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="w-full h-full relative overflow-hidden">
-              <img
-                src={img}
-                alt=""
-                className="w-full h-full block object-cover absolute z-1"
-              />
-              <div className="w-full absolute bottom-0 text-whit py-2 font-semibold backdrop-blur-sm">
-                <h3 className="text-white">JAWAN</h3>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>Slide 4</SwiperSlide>
-          <SwiperSlide>Slide 5</SwiperSlide>
-          <SwiperSlide>Slide 6</SwiperSlide>
-          <SwiperSlide>Slide 7</SwiperSlide>
-          <SwiperSlide>Slide 8</SwiperSlide>
-          <SwiperSlide>Slide 9</SwiperSlide>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </section>
